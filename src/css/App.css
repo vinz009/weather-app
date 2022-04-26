@@ -1,0 +1,59 @@
+
+* {
+	border: solid; 
+}
+
+.container {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-family: 'Anek Odia', sans-serif; 
+	font-size: 1.5em;
+	font-weight: 700;
+
+	margin: 40px  10vw 0 10vw;
+}
+
+
+ h2 {
+margin-bottom: 0;
+}
+
+input[type=text] {
+width: 400px;
+height: 50px;
+	font-size: 1em;
+	padding: 7px 30px;
+	border-radius: 30px 10px;
+}
+
+.clouds {
+position: relative;
+animation: ani 5s linear 2s infinite alternate; 
+
+}
+
+@keyframes ani {
+from {left:0px;}
+to {left:200px;}
+}
+
+
+.degrees {
+font-size: 5em;
+}
+
+.fade {
+opacity: 0;
+transition: opacity 5s linear;
+}
+
+.fade:hover {
+opacity: 1;
+}
+.fadeout {
+opacity: 0;
+transition: opacity 5s linear;
+}
+

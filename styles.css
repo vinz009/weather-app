@@ -1,0 +1,45 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Anek+Odia&family=Anton&family=Fira+Code:wght@400;600;700&family=Nunito&display=swap');
+
+/* font-family: 'Anek Odia', sans-serif; */
+/* font-family: 'Anton', sans-serif; */
+/* font-family: 'Fira Code', monospace; */
+/* font-family: 'Nunito', sans-serif; */
+
+
+body {
+	background-image: linear-gradient(to right,#44667C,#33566D);
+}
+
+* {
+	border: solid; 
+}
+
+.container {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-family: 'Anek Odia', sans-serif; 
+	font-size: 1.5em;
+	font-weight: 700;
+
+	margin: 40px  10vw 0 10vw;
+}
+
+
+ h2 {
+margin-bottom: 0;
+}
+
+input[type=text] {
+width: 400px;
+height: 50px;
+	font-size: 1em;
+	padding: 7px 30px;
+	border-radius: 30px 10px;
+}
+
+.degrees {
+font-size: 5em;
+}

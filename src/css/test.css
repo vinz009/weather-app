@@ -1,0 +1,30 @@
+
+
+.red {
+	opacity: 1;
+	background-color: red;
+	transition: opacity 2s ease;
+}
+.green {
+	background-color: green;
+}
+
+.fadein  {
+	transition: opacity 1s ease;
+}
+
+.fadeout  {
+	opacity: 0;
+	transition: opacity 1s ease;
+}
+
+.twist {
+        width: 120px;
+        height: 80px;
+        background-color: #46e891;
+        border-radius: 16px;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 80px;
+
+}
