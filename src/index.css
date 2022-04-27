@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Odia&family=Anton&family=Fira+Code:wght@400;600;700&family=Nunito&display=swap');
 
 body {
+	font-family: 'Fira Code', monospace;
+	font-weight: 700;
 	background-image: linear-gradient(to right,#44667C,#33566D);
 }
 

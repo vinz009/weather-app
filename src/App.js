@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Main from './main.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' 
+
 
 function App() {
 
@@ -67,7 +70,8 @@ function App() {
                         onChange={handleChange}
                         placeholder="Search for a City..."
                     />
-                    <input type="submit" value="tiraha men" />
+					<button onClick={handleSubmit}>Search</button>
+					<FontAwesomeIcon icon={solid('magnifying-glass')} />
                 </form>
             </div>
 		<Initialize data={data} />

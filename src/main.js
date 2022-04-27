@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export default function Main ({data}) {
 	
@@ -10,11 +12,26 @@ export default function Main ({data}) {
 
 	return (
 		<div>
-		<div>{celsius}&deg;C/{faren}&deg;F</div>		
-		<div>Feels Like:{feelsLike}&deg;C</div>		
-		<div>Humidity: {data.main.humidity}%</div>
-		<div>Visibility: {visi}km</div>
-		<div>{data.main.pressure}hPa</div>
+			<div>
+				<FontAwesomeIcon icon={solid('temperature-low')} />
+				<div>{celsius}&deg;C/{faren}&deg;F</div>
+			</div>
+			<div>
+				<FontAwesomeIcon icon={solid('thermometer')} />
+				<div>Feels Like:{feelsLike}&deg;C</div>		
+			</div>
+			<div>
+				<FontAwesomeIcon icon={solid('fan')} />
+				<div>Humidity: {data.main.humidity}%</div>
+			</div>
+			<div>
+				<FontAwesomeIcon icon={solid('eye')} />
+				<div>Visibility: {visi}km</div>
+			</div>
+			<div>
+				<FontAwesomeIcon icon={solid('wind')} />
+				<div>{data.main.pressure}hPa</div>
+			</div>
 		</div>
 	); 
 }
