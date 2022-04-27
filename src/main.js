@@ -1,37 +1,41 @@
-import React, { useState, useEffect } from 'react'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    solid,
+    regular,
+    brands,
+} from "@fortawesome/fontawesome-svg-core/import.macro";
 
-export default function Main ({data}) {
-	
-    const celsius = Math.round(data.main.temp - 273.15) ;
-    const faren = Math.round((data.main.temp - 273.15) * (9/5) + 32) ;
-    const feelsLike = Math.round(data.main.feels_like - 273.15) ;
-	const visi = data.visibility / 1000 ;
+export default function Main({ data }) {
+    const celsius = Math.round(data.main.temp - 273.15);
+    const faren = Math.round((data.main.temp - 273.15) * (9 / 5) + 32);
+    const feelsLike = Math.round(data.main.feels_like - 273.15);
+    const visi = data.visibility / 1000;
 
-
-	return (
-		<div>
-			<div>
-				<FontAwesomeIcon icon={solid('temperature-low')} />
-				<div>{celsius}&deg;C/{faren}&deg;F</div>
-			</div>
-			<div>
-				<FontAwesomeIcon icon={solid('thermometer')} />
-				<div>Feels Like:{feelsLike}&deg;C</div>		
-			</div>
-			<div>
-				<FontAwesomeIcon icon={solid('fan')} />
-				<div>Humidity: {data.main.humidity}%</div>
-			</div>
-			<div>
-				<FontAwesomeIcon icon={solid('eye')} />
-				<div>Visibility: {visi}km</div>
-			</div>
-			<div>
-				<FontAwesomeIcon icon={solid('wind')} />
-				<div>{data.main.pressure}hPa</div>
-			</div>
-		</div>
-	); 
+    return (
+        <div className="pl-1.5">
+            <div className="flex flex-row items-center space-x-2">
+                <FontAwesomeIcon icon={solid("temperature-low")} />
+                <div>
+                    {celsius}&deg;C/{faren}&deg;F
+                </div>
+            </div>
+            <div className="flex flex-row items-center space-x-2">
+                <FontAwesomeIcon icon={solid("thermometer")} />
+                <div>Feels Like:{feelsLike}&deg;C</div>
+            </div>
+            <div className="flex flex-row items-center space-x-2">
+                <FontAwesomeIcon icon={solid("fan")} />
+                <div>Humidity: {data.main.humidity}%</div>
+            </div>
+            <div className="flex flex-row items-center space-x-2">
+                <FontAwesomeIcon icon={solid("eye")} />
+                <div>Visibility: {visi}km</div>
+            </div>
+            <div className="flex flex-row items-center space-x-2">
+                <FontAwesomeIcon icon={solid("wind")} />
+                <div>{data.main.pressure}hPa</div>
+            </div>
+        </div>
+    );
 }
