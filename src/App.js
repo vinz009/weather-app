@@ -83,7 +83,9 @@ function App() {
 
             <Initialize data={data} />
 			<div className="mt-9">
-				<FontAwesomeIcon icon={brands("github")} />
+				<a href="https://github.com/vinz009/weather-app">
+					<FontAwesomeIcon icon={brands("github")} />
+				</a>
 			</div>
         </div>
     );
