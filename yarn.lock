@@ -5383,10 +5383,10 @@
   dependencies:
     "map-cache" "^0.2.2"
 
-"framer-motion@^6.3.1":
-  "integrity" "sha512-c4NX/XHkQIJdn9V+Yz55WZSPlpracyzFe50up5Vr/V4pxKA7q6t9WgISDo8VgQxuJf8vKPr01ka3UuUllw7zSg=="
-  "resolved" "https://registry.npmjs.org/framer-motion/-/framer-motion-6.3.1.tgz"
-  "version" "6.3.1"
+"framer-motion@^6.3.2":
+  "integrity" "sha512-z+W9LyFCrQwn8Q9vTPm9RM+jYdn2WH6NM2/h1qPtsYzDsMvT50quU8RKwG4Iq2pVeojVuY1WADCuNiIln9Y6dQ=="
+  "resolved" "https://registry.npmjs.org/framer-motion/-/framer-motion-6.3.2.tgz"
+  "version" "6.3.2"
   dependencies:
     "framesync" "6.0.1"
     "hey-listen" "^1.0.8"

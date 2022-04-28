@@ -17,10 +17,14 @@ function App() {
         "http://openweathermap.org/img/wn/10d@2x.png"
     );
 
+	const [set,isSet] = useState(false); 
+
     const url =
         "https://api.openweathermap.org/data/2.5/weather?q=" +
         input +
         "&appid=89a923d3669dee861721f773a3b3e9ff";
+
+	console.log(set);	
 
     function ifetch() {
         fetch(manila)
@@ -29,37 +33,53 @@ function App() {
     }
 
     function handleSubmit(e) {
+		const iconUrl = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
+
         function fetchapi() {
             fetch(url)
                 .then((res) => res.json())
                 .then((res) => setData(res));
             e.preventDefault();
         }
+
+		function setSet () {
+			if(set){
+				isSet(false);
+			} else {
+				isSet(true);
+			}
+		}
+
         fetchapi();
+		setIcon(iconUrl);
+		setSet();
     }
 
     function handleChange(e) {
         setInput(e.target.value);
     }
 
-    function Truthy({ data }) {
+    function Truthy({ data, set }) {
         return (
             <div>
-                <h1 className="text-4xl pt-4">
-                    {data.name}, {data.sys.country}
+                <h1 className="text-center text-4xl pt-4">
+                    {data.name}
                 </h1>
+				<h2 className="text-center text-2xl">{data.sys.country}</h2>
                 <img src={icon} />
-                <Main data={data} />
+                <Main data={data} set={set} />
             </div>
         );
     }
 
-    function Initialize({ data }) {
+    function Initialize({ data, set }) {
         console.log(data);
         if (data) {
-            return <Truthy data={data} />;
+            return <Truthy data={data} set={set} />;
         }
-        return <>loading...</>;
+        return (
+		<>Kumakarga...</>
+		)
     }
 
     return (
@@ -81,7 +101,7 @@ function App() {
                 </form>
             </div>
 
-            <Initialize data={data} />
+            <Initialize data={data} set={set} />
 			<div className="mt-9">
 				<a href="https://github.com/vinz009/weather-app">
 					<FontAwesomeIcon icon={brands("github")} />
@@ -90,6 +110,5 @@ function App() {
         </div>
     );
 }
-
 
 export default App;
