@@ -8,12 +8,15 @@
    - FontAwesome Icons
    - Open Weather API
 
+## Features
+   - Has Error Handling
+   - Communicate via native fetch api.
+
 ## Limitation and Vulnerabilites
-   Doesn't have an error interface when wrong input. Place valid cities.
-   Doesn't hide API keys as recommended way is via server api request.
-   Doesn't have catch any error via network request or route some request
+   - Doesn't hide API keys as recommended way is via server api request.
 
 ## Todos
    - Will add those limitation mentioned
    - Add react-spring for interactivity
    - Bug fixes
+   - Will add more feature

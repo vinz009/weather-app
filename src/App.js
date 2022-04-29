@@ -18,13 +18,16 @@ function App() {
     );
 
 	const [set,isSet] = useState(false); 
+	const [err,setErr] = useState(false); 
+	const [errMessage,setErrMessage] = useState(''); 
 
     const url =
         "https://api.openweathermap.org/data/2.5/weather?q=" +
         input +
         "&appid=89a923d3669dee861721f773a3b3e9ff";
 
-	console.log(set);	
+	console.log(errMessage);	
+	console.log(err);	
 
     function ifetch() {
         fetch(manila)
@@ -36,9 +39,20 @@ function App() {
 		const iconUrl = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
 
         function fetchapi() {
-            fetch(url)
+				fetch(url)
+				.then((res) => {
+					if(res.ok) {
+						return res;
+					}
+					return Promise.reject(res);
+				})
                 .then((res) => res.json())
-                .then((res) => setData(res));
+                .then((res) => setData(res))
+				.catch((res) => {
+					console.log(res.status);
+					setErr(true);
+					setErrMessage(res.status);
+				})
             e.preventDefault();
         }
 
@@ -49,7 +63,7 @@ function App() {
 				isSet(true);
 			}
 		}
-
+		setErr(false);
         fetchapi();
 		setIcon(iconUrl);
 		setSet();
@@ -72,8 +86,19 @@ function App() {
         );
     }
 
-    function Initialize({ data, set }) {
+    function Initialize({ data, set, err }) {
+        console.log(err);
         console.log(data);
+		if (err) {
+			return (
+			<div>
+				<h1 className="text-center mt-4 text-4xl">
+					Pls enter valid city name.
+				</h1>
+				<div className="text-center mt-8">Enter input again...</div>
+			</div>
+			)
+		} 
         if (data) {
             return <Truthy data={data} set={set} />;
         }
@@ -101,7 +126,7 @@ function App() {
                 </form>
             </div>
 
-            <Initialize data={data} set={set} />
+            <Initialize data={data} set={set} err={err} />
 			<div className="mt-9">
 				<a href="https://github.com/vinz009/weather-app">
 					<FontAwesomeIcon icon={brands("github")} />
