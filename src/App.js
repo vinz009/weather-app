@@ -17,17 +17,14 @@ function App() {
         "http://openweathermap.org/img/wn/10d@2x.png"
     );
 
-	const [set,isSet] = useState(false); 
-	const [err,setErr] = useState(false); 
-	const [errMessage,setErrMessage] = useState(''); 
+    const [set, isSet] = useState(false);
+    const [err, setErr] = useState(false);
+    const [errMessage, setErrMessage] = useState("");
 
     const url =
         "https://api.openweathermap.org/data/2.5/weather?q=" +
         input +
         "&appid=89a923d3669dee861721f773a3b3e9ff";
-
-	console.log(errMessage);	
-	console.log(err);	
 
     function ifetch() {
         fetch(manila)
@@ -36,37 +33,39 @@ function App() {
     }
 
     function handleSubmit(e) {
-		const iconUrl = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
+        const iconUrl =
+            "http://openweathermap.org/img/wn/" +
+            data.weather[0].icon +
+            "@2x.png";
 
         function fetchapi() {
-				fetch(url)
-				.then((res) => {
-					if(res.ok) {
-						return res;
-					}
-					return Promise.reject(res);
-				})
+            fetch(url)
+                .then((res) => {
+                    if (res.ok) {
+                        return res;
+                    }
+                    return Promise.reject(res);
+                })
                 .then((res) => res.json())
                 .then((res) => setData(res))
-				.catch((res) => {
-					console.log(res.status);
-					setErr(true);
-					setErrMessage(res.status);
-				})
+                .catch((res) => {
+                    setErr(true);
+                    setErrMessage(res.status);
+                });
             e.preventDefault();
         }
 
-		function setSet () {
-			if(set){
-				isSet(false);
-			} else {
-				isSet(true);
-			}
-		}
-		setErr(false);
+        function setSet() {
+            if (set) {
+                isSet(false);
+            } else {
+                isSet(true);
+            }
+        }
+        setErr(false);
         fetchapi();
-		setIcon(iconUrl);
-		setSet();
+        setIcon(iconUrl);
+        setSet();
     }
 
     function handleChange(e) {
@@ -76,10 +75,8 @@ function App() {
     function Truthy({ data, set }) {
         return (
             <div>
-                <h1 className="text-center text-4xl pt-4">
-                    {data.name}
-                </h1>
-				<h2 className="text-center text-2xl">{data.sys.country}</h2>
+                <h1 className="text-center text-4xl pt-4">{data.name}</h1>
+                <h2 className="text-center text-2xl">{data.sys.country}</h2>
                 <img src={icon} />
                 <Main data={data} set={set} />
             </div>
@@ -87,24 +84,20 @@ function App() {
     }
 
     function Initialize({ data, set, err }) {
-        console.log(err);
-        console.log(data);
-		if (err) {
-			return (
-			<div>
-				<h1 className="text-center mt-4 text-4xl">
-					Pls enter valid city name.
-				</h1>
-				<div className="text-center mt-8">Enter input again...</div>
-			</div>
-			)
-		} 
+        if (err) {
+            return (
+                <div>
+                    <h1 className="text-center mt-4 text-4xl">
+                        Pls enter valid city name.
+                    </h1>
+                    <div className="text-center mt-8">Enter input again...</div>
+                </div>
+            );
+        }
         if (data) {
             return <Truthy data={data} set={set} />;
         }
-        return (
-		<>Kumakarga...</>
-		)
+        return <>Kumakarga...</>;
     }
 
     return (
@@ -127,11 +120,11 @@ function App() {
             </div>
 
             <Initialize data={data} set={set} err={err} />
-			<div className="mt-9">
-				<a href="https://github.com/vinz009/weather-app">
-					<FontAwesomeIcon icon={brands("github")} />
-				</a>
-			</div>
+            <div className="mt-9">
+                <a href="https://github.com/vinz009/weather-app">
+                    <FontAwesomeIcon icon={brands("github")} />
+                </a>
+            </div>
         </div>
     );
 }

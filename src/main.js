@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import {
     solid,
     regular,
@@ -13,22 +13,16 @@ export default function Main({ data, set }) {
     const feelsLike = Math.round(data.main.feels_like - 273.15);
     const visi = data.visibility / 1000;
 
-const ttt = {
-  open: { opacity: 1, x: 0 },
-  closed: { opacity: 0, x: 0  },
-};
+    const ttt = {
+        open: { opacity: 1, x: 0 },
+        closed: { opacity: 0, x: 0 },
+    };
 
     return (
-
         <div className="pl-1.5">
-
-
-		<motion.div
-			variants={ttt}
-			  animate={set ? "open" : "open"}
-		>
-			Tricky
-		</motion.div>
+            <motion.div variants={ttt} animate={set ? "open" : "open"}>
+                Tricky
+            </motion.div>
 
             <div className="flex flex-row items-center space-x-2">
                 <FontAwesomeIcon icon={solid("temperature-low")} />
