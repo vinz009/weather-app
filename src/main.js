@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import {
     solid,
-    regular,
-    brands,
 } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default function Main({ data, set }) {
@@ -19,7 +17,7 @@ export default function Main({ data, set }) {
     };
 
     return (
-        <div className="pl-1.5">
+        <div className="pt-2.5 sm:space-y-2 lg:space-y-4">
             <motion.div variants={ttt} animate={set ? "open" : "open"}>
                 Tricky
             </motion.div>

@@ -101,9 +101,9 @@ function App() {
     }
 
     return (
-        <div className="container flex flex-col items-center justify-center pt-20">
-            <div className="">
-                <form className="space-x-2" onSubmit={handleSubmit}>
+        <div className="container mx-auto flex flex-col sm:text-sm  lg:text-4xl items-center lg:pt-20">
+            <div className="mt-8">
+                <form className="space-x-2 " onSubmit={handleSubmit}>
                     <input
                         className="rounded-tl-lg rounded-br-lg pl-2"
                         type="text"
@@ -120,7 +120,7 @@ function App() {
             </div>
 
             <Initialize data={data} set={set} err={err} />
-            <div className="mt-9">
+            <div className="my-9 ">
                 <a href="https://github.com/vinz009/weather-app">
                     <FontAwesomeIcon icon={brands("github")} />
                 </a>
