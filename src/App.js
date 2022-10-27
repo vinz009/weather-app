@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Main from "./main.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,6 +6,7 @@ import {
     regular,
     brands,
 } from "@fortawesome/fontawesome-svg-core/import.macro";
+import {motion} from "framer-motion"; 
 
 function App() {
     const manila =
@@ -68,6 +69,8 @@ function App() {
         setSet();
     }
 
+	const inputRef = useRef(null);
+
     function handleChange(e) {
         setInput(e.target.value);
     }
@@ -77,7 +80,18 @@ function App() {
             <div>
                 <h1 className="text-center text-4xl pt-4">{data.name}</h1>
                 <h2 className="text-center text-2xl">{data.sys.country}</h2>
-                <img src={icon} />
+				<motion.div
+					animate={{ x: 100 }}
+					transition= {{ 
+						ease: "easeOut", 
+						duration: 3,
+						repeat: Infinity,
+						repeatType: "reverse",
+						repeatDelay: 1
+					}}
+				>
+					<img src={icon} />
+				</motion.div>
                 <Main data={data} set={set} />
             </div>
         );
@@ -100,16 +114,26 @@ function App() {
         return <>Kumakarga...</>;
     }
 
+
+	function InputValue () {
+		return (
+                    <input
+                        className="rounded-tl-lg rounded-br-lg pl-2"
+                        type="text"
+					//	ref={inputRef}
+                        onChange={handleChange}
+                        placeholder="Ilagay ang Ciudad..."
+                    />
+		);
+
+	}
+
+
     return (
         <div className="container mx-auto flex flex-col sm:text-sm  lg:text-4xl items-center lg:pt-20">
             <div className="mt-8">
                 <form className="space-x-2 " onSubmit={handleSubmit}>
-                    <input
-                        className="rounded-tl-lg rounded-br-lg pl-2"
-                        type="text"
-                        onChange={handleChange}
-                        placeholder="Ilagay ang Ciudad..."
-                    />
+					<InputValue  />
                     <button
                         className="rounded-full bg-cyan-400 w-8 h-8"
                         onClick={handleSubmit}

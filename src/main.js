@@ -18,10 +18,11 @@ export default function Main({ data, set }) {
 
     return (
         <div className="pt-2.5 sm:space-y-2 lg:space-y-4">
-            <motion.div variants={ttt} animate={set ? "open" : "open"}>
-                Tricky
-            </motion.div>
-
+			<motion.div
+				initial={{ opacity: 0, scale: 0}}
+				animate={{ opacity: 1, scale: 1 }}
+				transition={{ duration: 1.5 }}
+		  >
             <div className="flex flex-row items-center space-x-2">
                 <FontAwesomeIcon icon={solid("temperature-low")} />
                 <div>
@@ -44,6 +45,7 @@ export default function Main({ data, set }) {
                 <FontAwesomeIcon icon={solid("wind")} />
                 <div>{data.main.pressure}hPa</div>
             </div>
+			</motion.div>
         </div>
     );
 }
