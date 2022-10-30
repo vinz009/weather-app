@@ -3,6 +3,8 @@ import Main from "./main.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid, brands } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { motion } from "framer-motion";
+import night from "./assets/night.jpg";
+import morning from "./assets/morning.jpg";
 
 export default function App() {
     const manila =
@@ -52,7 +54,12 @@ export default function App() {
     }
 
     return (
-        <div className="container mx-auto flex flex-col sm:text-sm  lg:text-4xl items-center lg:pt-20">
+        <div className="container mx-auto flex flex-col sm:text-sm  lg:text-4xl items-center lg:pt-20"
+			style={{ backgroundImage: `url(${night})`,
+					backgroundSize: 'cover',
+					backgroundPosition: 'center',
+						backgroundRepeat: 'no-repeat',
+			}}  >
             <InputForm inputRef={inputRef} handleSubmit={handleSubmit} />
             <Initialize data={data}  err={err} icon={icon} />
             <div className="my-9 ">
@@ -116,7 +123,7 @@ function InputForm({ inputRef, handleSubmit }) {
                     className="rounded-full bg-cyan-400 w-8 h-8"
                     onClick={handleSubmit}
                 >
-                    <FontAwesomeIcon icon={solid("magnifying-glass")} />
+                    <FontAwesomeIcon icon={solid("magnifying-glass")} bounce />
                 </button>
             </form>
         </div>

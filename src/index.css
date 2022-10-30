@@ -7,6 +7,14 @@
 body {
 	font-family: 'Fira Code', monospace;
 	font-weight: 700;
-	background-image: linear-gradient(to right,#44667C,#33566D);
+	color: white;
+	text-shadow: 1px 1px 5px black;
+/*	background-image: linear-gradient(to right,#44667C,#33566D);  */
 }
+
+input{
+    color: black;
+}
+
+
 
