@@ -59,6 +59,8 @@ export default function App() {
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 						backgroundRepeat: 'no-repeat',
+					width: '100vw',
+					height: '100vh' ,
 			}}  >
             <InputForm inputRef={inputRef} handleSubmit={handleSubmit} />
             <Initialize data={data}  err={err} icon={icon} />
