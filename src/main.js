@@ -5,6 +5,8 @@ import {
     solid,
 } from "@fortawesome/fontawesome-svg-core/import.macro";
 
+// @flow
+
 export default function Main({ data, set }) {
     const celsius = Math.round(data.main.temp - 273.15);
     const faren = Math.round((data.main.temp - 273.15) * (9 / 5) + 32);
