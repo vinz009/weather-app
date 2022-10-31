@@ -1,28 +1,71 @@
 import React, { useEffect, useState, useRef } from "react";
-import Main from "./main.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid, brands } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { motion } from "framer-motion";
 
-import temp from "./temp";
-import sunnyOne from "./assets/sunny.jpg";
+import { sunny, cloudy, moist } from "./assets/index"; 
 
 export default function App() {
     const manila =
         "https://api.openweathermap.org/data/2.5/weather?q=Manila&appid=89a923d3669dee861721f773a3b3e9ff";
-    const [data, setData] = useState(ifetch);
-    const [icon, setIcon] = useState(
-        "http://openweathermap.org/img/wn/10d@2x.png"
-    );
     const inputRef = useRef("cebu");
+
+    const [data, setData] = useState(ifetch);
+    const [icon, setIcon] = useState("http://openweathermap.org/img/wn/10d@2x.png");
     const [err, setErr] = useState(false);
 
-	const [tempMessage, setTemp] = useState(sunnyOne);
+	const [tempMessage, setTemp] = useState("");
+
+    const [celsius, setCelsius] = useState(2); 
+    const [farenheight, setFarenheight] = useState(2);  
+    const [feelsLike, setFeelsLike] = useState(2);
+    const [visibility, setVisibility] = useState(2); 
+    const [humidity, setHumidity] = useState(2); 
+    const [pressure, setPressure] = useState(2); 
+	const [city, setCity] = useState('cebu');
+	const [country, setCountry] = useState('PH');
+	const weatherProps = {
+		celsius,
+		farenheight,
+		feelsLike,
+		visibility,
+		humidity,
+		pressure,
+		city,
+		country
+	};
+
+	function tempData (data) {
+		setCelsius(Math.ceil(data.main.temp - 273.15));
+		setFarenheight(Math.ceil((data.main.temp - 273.15) * (9 / 5) + 32));
+		setFeelsLike(Math.ceil(data.main.feels_like - 273.15));
+		setVisibility(data.visibility / 1000);
+		setHumidity(data.main.humidity);
+		setPressure(data.main.pressure);
+		setCity(data.name);
+		setCountry(data.sys.country);
+		// if(celsius >= 19 && celsius <= 23) {
+		// 	return cloudy ;
+		// }
+		// else if(celsius <= 18)  {
+		// 	return moist ;
+		// }
+		// else {
+		// 	return sunny ;
+		// }
+
+	}
 
     function ifetch() {
         fetch(manila)
             .then((res) => res.json())
-            .then((res) => setData(res))
+            .then((data) => {
+				 setData(data);
+				console.log(data);
+				tempData(data);
+				
+			});	
+
     }
 
     function handleSubmit(e) {
@@ -54,7 +97,6 @@ export default function App() {
         e.preventDefault();
         inputRef.current.value = "";
         setIcon(iconUrl);
-		setTemp(temp(data));
     }
 
     return (
@@ -70,7 +112,8 @@ export default function App() {
             }}
         >
             <InputForm inputRef={inputRef} handleSubmit={handleSubmit} />
-            <Initialize data={data} err={err} icon={icon} />
+            <Initialize weatherProps={weatherProps} err={err} icon={icon} />
+
             <div className="flex flex-col items-center my-9 ">
 				<div>
                 <a href="https://github.com/vinz009/weather-app">
@@ -83,11 +126,28 @@ export default function App() {
     );
 }
 
-function Truthy({ data, icon }) {
+function Initialize({  err, icon, weatherProps}) {
+    if (err) {
+        return (
+            <div>
+                <h1 className="text-center mt-4 text-4xl">
+                    Pls enter valid city name.
+                </h1>
+                <div className="text-center mt-8">Enter input again...</div>
+            </div>
+        );
+    }
+    if (weatherProps) {
+        return <Truthy weatherProps={weatherProps} icon={icon} />;
+    }
+    return <>Kumakarga...</>;
+}
+
+function Truthy({  icon, weatherProps }) {
     return (
         <div>
-            <h1 className="text-center text-4xl pt-4">{data.name}</h1>
-            <h2 className="text-center text-2xl">{data.sys.country}</h2>
+            <h1 className="text-center text-4xl pt-4">{weatherProps.city} </h1>
+            <h2 className="text-center text-2xl">{weatherProps.country}  </h2>
             <motion.div
                 animate={{ x: 100 }}
                 transition={{
@@ -100,25 +160,9 @@ function Truthy({ data, icon }) {
             >
                 <img src={icon} />
             </motion.div>
-            <Main data={data} />
+            <Main weatherProps={weatherProps} />
         </div>
     );
-}
-function Initialize({ data, err, icon }) {
-    if (err) {
-        return (
-            <div>
-                <h1 className="text-center mt-4 text-4xl">
-                    Pls enter valid city name.
-                </h1>
-                <div className="text-center mt-8">Enter input again...</div>
-            </div>
-        );
-    }
-    if (data) {
-        return <Truthy data={data} icon={icon} />;
-    }
-    return <>Kumakarga...</>;
 }
 
 function InputForm({ inputRef, handleSubmit }) {
@@ -141,6 +185,7 @@ function InputForm({ inputRef, handleSubmit }) {
         </div>
     );
 }
+
 function Freepik () {
 	return (
 		<div className="flex flex-col items-center" >
@@ -151,4 +196,32 @@ function Freepik () {
 		</div>
 		</div>
 	);
+}
+
+function Main({ weatherProps  }) {
+
+    return (
+        <div className="pt-2.5 sm:space-y-2 lg:space-y-4">
+            <div className="flex flex-row items-center space-x-2">
+                <FontAwesomeIcon icon={solid("temperature-low")} fade />
+                <div> {weatherProps.celsius}&deg;C/{weatherProps.farenheight}&deg;F </div>
+            </div>
+            <div className="flex flex-row items-center space-x-2">
+                <FontAwesomeIcon icon={solid("thermometer")} fade />
+                <div>Feels Like:{weatherProps.feelsLike}&deg;C</div>
+            </div>
+            <div className="flex flex-row items-center space-x-2">
+                <FontAwesomeIcon icon={solid("fan")} fade />
+                <div>Humidity: {weatherProps.humidity}%</div>
+            </div>
+            <div className="flex flex-row items-center space-x-2">
+                <FontAwesomeIcon icon={solid("eye")}  fade />
+                <div>Visibility: {weatherProps.visibility}km</div>
+            </div>
+            <div className="flex flex-row items-center space-x-2">
+                <FontAwesomeIcon icon={solid("wind")} fade />
+                <div>{weatherProps.pressure}hPa</div>
+            </div>
+        </div>
+    );
 }

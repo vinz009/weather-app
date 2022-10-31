@@ -2,6 +2,8 @@
 
 ![sample](./panahon.png)
 
+[Live Demo](https://vinz009.github.io/weather-app/)
+
 ## Built with
    - React
    - Tailwindcss
@@ -12,9 +14,6 @@
 ## Features
    - Has Error Handling
    - Communicate via native fetch api.
-
-## Limitation and Vulnerabilites
-   - Doesn't hide API keys as recommended way is via server api request.
 
 ## Todos
    - Will add those limitation mentioned
