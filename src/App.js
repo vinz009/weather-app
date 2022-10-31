@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Main from "./main.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid, brands } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { motion } from "framer-motion";
-import night from "./assets/night.jpg";
-import morning from "./assets/morning.jpg";
+
+import temp from "./temp";
+import sunnyOne from "./assets/sunny.jpg";
 
 export default function App() {
     const manila =
@@ -16,10 +17,17 @@ export default function App() {
     const inputRef = useRef("cebu");
     const [err, setErr] = useState(false);
 
+	const [tempMessage, setTemp] = useState(sunnyOne);
+
+	
+	useEffect(() => {
+		console.log(data);
+	},[data]);
+
     function ifetch() {
         fetch(manila)
             .then((res) => res.json())
-            .then((res) => setData(res));
+            .then((res) => setData(res))
     }
 
     function handleSubmit(e) {
@@ -51,19 +59,23 @@ export default function App() {
         e.preventDefault();
         inputRef.current.value = "";
         setIcon(iconUrl);
+		setTemp(temp(data));
     }
 
     return (
-        <div className="container mx-auto flex flex-col sm:text-sm  lg:text-4xl items-center lg:pt-20"
-			style={{ backgroundImage: `url(${night})`,
-					backgroundSize: 'cover',
-					backgroundPosition: 'center',
-						backgroundRepeat: 'no-repeat',
-					width: '100vw',
-					height: '100vh' ,
-			}}  >
+        <div
+            className="container mx-auto flex flex-col sm:text-sm  lg:text-4xl items-center lg:pt-20"
+            style={{
+                backgroundImage: `url(${tempMessage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                width: "100vw",
+                height: "100vh",
+            }}
+        >
             <InputForm inputRef={inputRef} handleSubmit={handleSubmit} />
-            <Initialize data={data}  err={err} icon={icon} />
+            <Initialize data={data} err={err} icon={icon} />
             <div className="my-9 ">
                 <a href="https://github.com/vinz009/weather-app">
                     <FontAwesomeIcon icon={brands("github")} />
@@ -73,7 +85,7 @@ export default function App() {
     );
 }
 
-function Truthy({ data,  icon }) {
+function Truthy({ data, icon }) {
     return (
         <div>
             <h1 className="text-center text-4xl pt-4">{data.name}</h1>
@@ -90,11 +102,11 @@ function Truthy({ data,  icon }) {
             >
                 <img src={icon} />
             </motion.div>
-            <Main data={data}  />
+            <Main data={data} />
         </div>
     );
 }
-function Initialize({ data,  err, icon }) {
+function Initialize({ data, err, icon }) {
     if (err) {
         return (
             <div>
@@ -106,7 +118,7 @@ function Initialize({ data,  err, icon }) {
         );
     }
     if (data) {
-        return <Truthy data={data}  icon={icon} />;
+        return <Truthy data={data} icon={icon} />;
     }
     return <>Kumakarga...</>;
 }

@@ -9,9 +9,10 @@ import {
 // @flow
 
 export default function Main({ data }) {
-    const celsius = Math.round(data.main.temp - 273.15);
-    const faren = Math.round((data.main.temp - 273.15) * (9 / 5) + 32);
-    const feelsLike = Math.round(data.main.feels_like - 273.15);
+    const celsiusOne = Math.ceil(data.main.temp - 273.15);
+	
+    const faren = Math.ceil((data.main.temp - 273.15) * (9 / 5) + 32);
+    const feelsLike = Math.ceil(data.main.feels_like - 273.15);
     const visi = data.visibility / 1000;
 
 
@@ -25,7 +26,7 @@ export default function Main({ data }) {
             <div className="flex flex-row items-center space-x-2">
                 <FontAwesomeIcon icon={solid("temperature-low")} fade />
                 <div>
-                    {celsius}&deg;C/{faren}&deg;F
+                    {celsiusOne}&deg;C/{faren}&deg;F
                 </div>
             </div>
             <div className="flex flex-row items-center space-x-2">
