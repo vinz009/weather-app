@@ -76,10 +76,13 @@ export default function App() {
         >
             <InputForm inputRef={inputRef} handleSubmit={handleSubmit} />
             <Initialize data={data} err={err} icon={icon} />
-            <div className="my-9 ">
+            <div className="flex flex-col items-center my-9 ">
+				<div>
                 <a href="https://github.com/vinz009/weather-app">
                     <FontAwesomeIcon icon={brands("github")} />
                 </a>
+				</div>
+				<Freepik />
             </div>
         </div>
     );
@@ -142,4 +145,15 @@ function InputForm({ inputRef, handleSubmit }) {
             </form>
         </div>
     );
+}
+function Freepik () {
+	return (
+		<div className="flex flex-col items-center" >
+		<div className="text-sm">Freepik</div>
+		<div className="flex flex-row items-center text-xs space-x-3" >
+<a href="https://www.freepik.com/free-photo/cloud-blue-sky_1017702.htm#query=weather&position=27&from_view=search&track=sph">jannoon028</a>   
+		<a href="https://www.freepik.com/free-photo/closeup-shot-window-rainy-gloomy-day-raindrops-rolling-down-window_11942630.htm#query=weather&position=40&from_view=search&track=sph">wirestock</a>
+		</div>
+		</div>
+	);
 }
