@@ -19,11 +19,6 @@ export default function App() {
 
 	const [tempMessage, setTemp] = useState(sunnyOne);
 
-	
-	useEffect(() => {
-		console.log(data);
-	},[data]);
-
     function ifetch() {
         fetch(manila)
             .then((res) => res.json())

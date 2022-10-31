@@ -7,6 +7,7 @@
    - Tailwindcss
    - FontAwesome Icons
    - Open Weather API
+   - Freepik Image
 
 ## Features
    - Has Error Handling
