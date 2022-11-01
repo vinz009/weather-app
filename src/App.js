@@ -8,22 +8,22 @@ import { sunny, cloudy, moist } from "./assets/index";
 export default function App() {
     const manila =
         "https://api.openweathermap.org/data/2.5/weather?q=Manila&appid=89a923d3669dee861721f773a3b3e9ff";
-    const inputRef = useRef("cebu");
+    const inputRef = useRef("");
 
-    const [data, setData] = useState(ifetch);
+    //const [preData, setPreData] = useState(ifetch);
     const [icon, setIcon] = useState("http://openweathermap.org/img/wn/10d@2x.png");
     const [err, setErr] = useState(false);
 
-	const [tempMessage, setTemp] = useState("");
+	const [tempMessage, setTemp] = useState();
 
-    const [celsius, setCelsius] = useState(2); 
-    const [farenheight, setFarenheight] = useState(2);  
-    const [feelsLike, setFeelsLike] = useState(2);
-    const [visibility, setVisibility] = useState(2); 
-    const [humidity, setHumidity] = useState(2); 
-    const [pressure, setPressure] = useState(2); 
-	const [city, setCity] = useState('cebu');
-	const [country, setCountry] = useState('PH');
+    const [celsius, setCelsius] = useState(); 
+    const [farenheight, setFarenheight] = useState();  
+    const [feelsLike, setFeelsLike] = useState();
+    const [visibility, setVisibility] = useState(); 
+    const [humidity, setHumidity] = useState(); 
+    const [pressure, setPressure] = useState(); 
+	const [city, setCity] = useState();
+	const [country, setCountry] = useState();
 	const weatherProps = {
 		celsius,
 		farenheight,
@@ -35,6 +35,24 @@ export default function App() {
 		country
 	};
 
+	useEffect(() => { 
+
+		if(celsius >= 19 && celsius <= 23) {
+		 	setTemp(cloudy) ;
+		}
+		else if(celsius <= 18)  {
+		 	setTemp(moist)
+		}
+		else {
+		 	setTemp(sunny) ;
+		}
+
+		},[celsius]);
+
+	useEffect(() => {
+		ifetch();
+	},[]);
+
 	function tempData (data) {
 		setCelsius(Math.ceil(data.main.temp - 273.15));
 		setFarenheight(Math.ceil((data.main.temp - 273.15) * (9 / 5) + 32));
@@ -44,15 +62,6 @@ export default function App() {
 		setPressure(data.main.pressure);
 		setCity(data.name);
 		setCountry(data.sys.country);
-		// if(celsius >= 19 && celsius <= 23) {
-		// 	return cloudy ;
-		// }
-		// else if(celsius <= 18)  {
-		// 	return moist ;
-		// }
-		// else {
-		// 	return sunny ;
-		// }
 
 	}
 
@@ -60,23 +69,17 @@ export default function App() {
         fetch(manila)
             .then((res) => res.json())
             .then((data) => {
-				 setData(data);
 				console.log(data);
 				tempData(data);
-				
 			});	
-
     }
 
     function handleSubmit(e) {
-        const url =
-            "https://api.openweathermap.org/data/2.5/weather?q=" +
-            inputRef.current.value +
-            "&appid=89a923d3669dee861721f773a3b3e9ff";
-        const iconUrl =
-            "http://openweathermap.org/img/wn/" +
-            data.weather[0].icon +
-            "@2x.png";
+
+					const url =
+						"https://api.openweathermap.org/data/2.5/weather?q=" +
+						inputRef.current.value +
+						"&appid=89a923d3669dee861721f773a3b3e9ff";
 
         function fetchapi() {
             fetch(url)
@@ -86,7 +89,16 @@ export default function App() {
                     }
                 })
                 .then((res) => res.json())
-                .then((res) => setData(res))
+                .then((res) => {
+					tempData(res);
+
+					const iconUrl =
+						"http://openweathermap.org/img/wn/" +
+						res.weather[0].icon +
+						"@2x.png";
+
+					setIcon(iconUrl);
+				})
                 .catch((res) => {
                     setErr(true);
                 });
@@ -96,7 +108,6 @@ export default function App() {
         fetchapi();
         e.preventDefault();
         inputRef.current.value = "";
-        setIcon(iconUrl);
     }
 
     return (
