@@ -10,6 +10,7 @@
    - FontAwesome Icons
    - Open Weather API
    - Freepik Image
+   - Framer-motion
 
 ## Features
    - Has Error Handling

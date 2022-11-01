@@ -112,7 +112,7 @@ export default function App() {
 
     return (
         <div
-            className="container mx-auto flex flex-col sm:text-sm  lg:text-4xl items-center lg:pt-20"
+            className="container mx-auto flex flex-col sm:text-sm  lg:text-5xl items-center lg:pt-20"
             style={{
                 backgroundImage: `url(${tempMessage})`,
                 backgroundSize: "cover",
@@ -157,8 +157,8 @@ function Initialize({  err, icon, weatherProps}) {
 function Truthy({  icon, weatherProps }) {
     return (
         <div>
-            <h1 className="text-center text-4xl pt-4">{weatherProps.city} </h1>
-            <h2 className="text-center text-2xl">{weatherProps.country}  </h2>
+            <h1 className="text-center text-6xl pt-4">{weatherProps.city} </h1>
+            <h2 className="text-center text-4xl">{weatherProps.country}  </h2>
             <motion.div
                 animate={{ x: 100 }}
                 transition={{
@@ -169,7 +169,7 @@ function Truthy({  icon, weatherProps }) {
                     repeatDelay: 1,
                 }}
             >
-                <img src={icon} />
+                <img  src={icon} />
             </motion.div>
             <Main weatherProps={weatherProps} />
         </div>
@@ -213,26 +213,58 @@ function Main({ weatherProps  }) {
 
     return (
         <div className="pt-2.5 sm:space-y-2 lg:space-y-4">
-            <div className="flex flex-row items-center space-x-2">
-                <FontAwesomeIcon icon={solid("temperature-low")} fade />
-                <div> {weatherProps.celsius}&deg;C/{weatherProps.farenheight}&deg;F </div>
-            </div>
-            <div className="flex flex-row items-center space-x-2">
-                <FontAwesomeIcon icon={solid("thermometer")} fade />
-                <div>Feels Like:{weatherProps.feelsLike}&deg;C</div>
-            </div>
-            <div className="flex flex-row items-center space-x-2">
-                <FontAwesomeIcon icon={solid("fan")} fade />
-                <div>Humidity: {weatherProps.humidity}%</div>
-            </div>
-            <div className="flex flex-row items-center space-x-2">
-                <FontAwesomeIcon icon={solid("eye")}  fade />
-                <div>Visibility: {weatherProps.visibility}km</div>
-            </div>
-            <div className="flex flex-row items-center space-x-2">
-                <FontAwesomeIcon icon={solid("wind")} fade />
-                <div>{weatherProps.pressure}hPa</div>
-            </div>
+			<motion.div
+				key={weatherProps.celsius}
+				animate={{ x:100 }}
+				transition={{ delay:1 }}
+			>
+				<div className="flex flex-row items-center space-x-2">
+					<FontAwesomeIcon icon={solid("temperature-low")} fade />
+					<div> {weatherProps.celsius}&deg;C/{weatherProps.farenheight}&deg;F </div>
+				</div>
+			</motion.div>
+			<motion.div
+				key={weatherProps.celsius}
+				initial={{ x:100}}
+				animate={{ x:0 }}
+				transition={{ delay:2 }}
+			>
+				<div className="flex flex-row items-center space-x-2">
+					<FontAwesomeIcon icon={solid("thermometer")} fade />
+					<div>Feels Like:{weatherProps.feelsLike}&deg;C</div>
+				</div>
+			</motion.div>
+			<motion.div
+				key={weatherProps.celsius}
+				animate={{ x:100 }}
+				transition={{ delay:1 }}
+			>
+				<div className="flex flex-row items-center space-x-2">
+					<FontAwesomeIcon icon={solid("fan")} fade />
+					<div>Humidity: {weatherProps.humidity}%</div>
+				</div>
+			</motion.div>
+			<motion.div
+				key={weatherProps.celsius}
+				initial={{ x:100}}
+				animate={{ x:0 }}
+				transition={{ delay:2 }}
+			>
+				<div className="flex flex-row items-center space-x-2">
+					<FontAwesomeIcon icon={solid("eye")}  fade />
+					<div>Visibility: {weatherProps.visibility}km</div>
+				</div>
+			</motion.div>
+			<motion.div
+				key={weatherProps.celsius}
+				animate={{ x:100 }}
+				transition={{ delay:1 }}
+			>
+				<div className="flex flex-row items-center space-x-2">
+					<FontAwesomeIcon icon={solid("wind")} fade />
+					<div>{weatherProps.pressure}hPa</div>
+				</div>
+			</motion.div>
         </div>
     );
 }
