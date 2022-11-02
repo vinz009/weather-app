@@ -37,10 +37,10 @@ export default function App() {
 
 	useEffect(() => { 
 
-		if(celsius >= 19 && celsius <= 23) {
+		if(celsius >= 21 && celsius <= 25) {
 		 	setTemp(cloudy) ;
 		}
-		else if(celsius <= 18)  {
+		else if(celsius <= 20)  {
 		 	setTemp(moist)
 		}
 		else {
@@ -160,6 +160,7 @@ function Truthy({  icon, weatherProps }) {
             <h1 className="text-center text-6xl pt-4">{weatherProps.city} </h1>
             <h2 className="text-center text-4xl">{weatherProps.country}  </h2>
             <motion.div
+				key={6}
                 animate={{ x: 100 }}
                 transition={{
                     ease: "easeOut",
@@ -214,9 +215,13 @@ function Main({ weatherProps  }) {
     return (
         <div className="pt-2.5 sm:space-y-2 lg:space-y-4">
 			<motion.div
-				key={weatherProps.celsius}
+				key={1}
 				animate={{ x:100 }}
-				transition={{ delay:1 }}
+				transition={{ 
+					delay:1,
+					repeat: Infinity,
+					repeatDelay:4,
+				}}
 			>
 				<div className="flex flex-row items-center space-x-2">
 					<FontAwesomeIcon icon={solid("temperature-low")} fade />
@@ -224,10 +229,14 @@ function Main({ weatherProps  }) {
 				</div>
 			</motion.div>
 			<motion.div
-				key={weatherProps.celsius}
+				key={2}
 				initial={{ x:100}}
 				animate={{ x:0 }}
-				transition={{ delay:2 }}
+				transition={{ 
+					delay:2,
+					repeat: Infinity,
+					repeatDelay: 4,
+				}}
 			>
 				<div className="flex flex-row items-center space-x-2">
 					<FontAwesomeIcon icon={solid("thermometer")} fade />
@@ -235,9 +244,13 @@ function Main({ weatherProps  }) {
 				</div>
 			</motion.div>
 			<motion.div
-				key={weatherProps.celsius}
+				key={3}
 				animate={{ x:100 }}
-				transition={{ delay:1 }}
+				transition={{ 
+					delay:1,
+					repeat: Infinity,
+					repeatDelay: 4,
+				}}
 			>
 				<div className="flex flex-row items-center space-x-2">
 					<FontAwesomeIcon icon={solid("fan")} fade />
@@ -245,10 +258,14 @@ function Main({ weatherProps  }) {
 				</div>
 			</motion.div>
 			<motion.div
-				key={weatherProps.celsius}
+				key={4}
 				initial={{ x:100}}
 				animate={{ x:0 }}
-				transition={{ delay:2 }}
+				transition={{ 
+					delay:2,
+					repeat: Infinity,
+					repeatDelay: 4,
+				}}
 			>
 				<div className="flex flex-row items-center space-x-2">
 					<FontAwesomeIcon icon={solid("eye")}  fade />
@@ -256,9 +273,13 @@ function Main({ weatherProps  }) {
 				</div>
 			</motion.div>
 			<motion.div
-				key={weatherProps.celsius}
+				key={5}
 				animate={{ x:100 }}
-				transition={{ delay:1 }}
+				transition={{ 
+					delay:1,
+					repeat: Infinity,
+					repeatDelay: 4,
+				}}
 			>
 				<div className="flex flex-row items-center space-x-2">
 					<FontAwesomeIcon icon={solid("wind")} fade />
