@@ -2,6 +2,8 @@
 
 ![sample](./panahon.png)
 
+# Live Demo
+
 [Live Demo](https://vinz009.github.io/weather-app/)
 
 ## Built with
