@@ -127,7 +127,7 @@ export default function App() {
 
             <div className="flex flex-col items-center my-9 ">
 				<div className="mb-4 mt-6" >
-                <a href="https://github.com/vinz009/weather-app">
+                <a href="https://vinz009.github.io/homepage/">
                     <FontAwesomeIcon icon={solid("house")} />
                 </a>
 				</div>
