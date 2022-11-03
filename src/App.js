@@ -112,7 +112,7 @@ export default function App() {
 
     return (
         <div
-            className="container mx-auto flex flex-col sm:text-sm  lg:text-5xl items-center lg:pt-20"
+            className="container mx-auto flex flex-col sm:text-lg  md:text-5xl items-center lg:pt-20"
             style={{
                 backgroundImage: `url(${tempMessage})`,
                 backgroundSize: "cover",
@@ -126,9 +126,9 @@ export default function App() {
             <Initialize weatherProps={weatherProps} err={err} icon={icon} />
 
             <div className="flex flex-col items-center my-9 ">
-				<div>
+				<div className="mb-4 mt-6" >
                 <a href="https://github.com/vinz009/weather-app">
-                    <FontAwesomeIcon icon={brands("github")} />
+                    <FontAwesomeIcon icon={solid("house")} />
                 </a>
 				</div>
 				<Freepik />
@@ -216,7 +216,7 @@ function Main({ weatherProps  }) {
         <div className="pt-2.5 sm:space-y-2 lg:space-y-4">
 			<motion.div
 				key={1}
-				animate={{ x:100 }}
+				animate={{ x:50 }}
 				transition={{ 
 					delay:1,
 					repeat: Infinity,
@@ -230,7 +230,7 @@ function Main({ weatherProps  }) {
 			</motion.div>
 			<motion.div
 				key={2}
-				initial={{ x:100}}
+				initial={{ x:50}}
 				animate={{ x:0 }}
 				transition={{ 
 					delay:2,
@@ -245,7 +245,7 @@ function Main({ weatherProps  }) {
 			</motion.div>
 			<motion.div
 				key={3}
-				animate={{ x:100 }}
+				animate={{ x:50 }}
 				transition={{ 
 					delay:1,
 					repeat: Infinity,
@@ -259,7 +259,7 @@ function Main({ weatherProps  }) {
 			</motion.div>
 			<motion.div
 				key={4}
-				initial={{ x:100}}
+				initial={{ x:50}}
 				animate={{ x:0 }}
 				transition={{ 
 					delay:2,
@@ -274,7 +274,7 @@ function Main({ weatherProps  }) {
 			</motion.div>
 			<motion.div
 				key={5}
-				animate={{ x:100 }}
+				animate={{ x:50 }}
 				transition={{ 
 					delay:1,
 					repeat: Infinity,
