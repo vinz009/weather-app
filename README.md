@@ -4,7 +4,7 @@
 
 # Live Demo
 
-[Live Demo](https://vinz009.github.io/weather-app/)
+[Weather-App](https://vinz009.github.io/weather-app/)
 
 ## Built with
    - React
