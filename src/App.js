@@ -122,6 +122,7 @@ export default function App() {
                 height: "100vh",
             }}
         >
+			<div>APLIKASYONG PANAHON</div>
             <InputForm inputRef={inputRef} handleSubmit={handleSubmit} />
             <Initialize weatherProps={weatherProps} err={err} icon={icon} />
 
