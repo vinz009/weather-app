@@ -13,11 +13,12 @@ export default function App() {
     );
     const [err, setErr] = useState(false);
     const [tempMessage, setTemp] = useState();
+	const [weatherProps, setWeatherProps] = useState("");
 
     useEffect(() => {
-        if (weatherProps.celsius >= 21 && weatherProps.celsius <= 25) {
+        if (weatherProps.celsius >= 19 && weatherProps.celsius <= 25) {
             setTemp(cloudy);
-        } else if (weatherProps.celsius <= 20) {
+        } else if (weatherProps.celsius <= 18) {
             setTemp(moist);
         } else {
             setTemp(sunny);
