@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid, brands } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { motion } from "framer-motion";
 import { sunny, cloudy, moist } from "./assets/index";
 
@@ -13,7 +13,7 @@ export default function App() {
     );
     const [err, setErr] = useState(false);
     const [tempMessage, setTemp] = useState();
-	const [weatherProps, setWeatherProps] = useState("");
+    const [weatherProps, setWeatherProps] = useState("");
 
     useEffect(() => {
         if (weatherProps.celsius >= 19 && weatherProps.celsius <= 25) {

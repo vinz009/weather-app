@@ -54,6 +54,8 @@
         "@commitlint/cli": "^17.3.0",
         "@commitlint/config-conventional": "^17.3.0",
         "autoprefixer": "^10.4.5",
+        "eslint": "^8.28.0",
+        "eslint-plugin-react": "^7.31.11",
         "flow-bin": "^0.191.0",
         "flow-remove-types": "^2.191.0",
         "husky": "^8.0.0",
